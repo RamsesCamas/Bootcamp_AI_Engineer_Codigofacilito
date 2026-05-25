@@ -4,3 +4,6 @@ __pycache__
 outputs/
 chroma_db/
 .claude/
+ai-engineer-bootcamp/evals/reports/*
+!ai-engineer-bootcamp/evals/reports/README.md
+ai-engineer-bootcamp/dspy_lab/qa_optimized_mipro.json

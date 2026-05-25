@@ -1,0 +1,12 @@
+services:
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: docops-phoenix
+    ports:
+      - "6006:6006"   # UI + OTLP/HTTP
+      - "4317:4317"   # OTLP/gRPC
+    environment:
+      - PHOENIX_WORKING_DIR=/mnt/phoenix
+    volumes:
+      - ./phoenix_data:/mnt/phoenix
+    restart: unless-stopped

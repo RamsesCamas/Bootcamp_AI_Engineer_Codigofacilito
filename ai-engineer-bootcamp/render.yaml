@@ -1,0 +1,29 @@
+# DocOps Agent — Blueprint de Render (Clase 16)
+# https://render.com/docs/blueprint-spec
+#
+# NOTA sobre free tier:
+#   - El bloque `disk:` abajo NO funciona en el plan free (requiere "starter" $7/mes).
+#   - En free tier, ChromaDB se recrea en cada cold start (hibernación a los 15 min sin tráfico).
+#   - Para persistencia real, descomenta `disk:` y cambia `plan: free` → `plan: starter`.
+
+services:
+  - type: web
+    name: docops-agent
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerCommand: streamlit run streamlit_app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false                 # se configura manualmente en el dashboard
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+      - key: TRACING_ENABLED
+        value: "false"
+      - key: CHROMA_PATH
+        value: /opt/render/project/src/data/chroma
+    # disk:                         # ← requiere plan starter ($7/mes)
+    #   name: chroma-data
+    #   mountPath: /opt/render/project/src/data
+    #   sizeGB: 1

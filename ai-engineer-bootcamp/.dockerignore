@@ -1,0 +1,40 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+venv/
+.venv/
+env/
+ENV/
+
+.env
+.env.local
+.git/
+.gitignore
+.github/
+
+# Datos y artefactos locales
+chroma_db/
+chroma_db_clase6/
+docops_checkpoints.db
+outputs/
+evals/reports/
+evals/results/
+evals/traces/
+ops/phoenix_data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Documentación de deploy (no se necesita dentro del container)
+README_HF.md
+README_STREAMLIT.md
+README_RENDER.md
